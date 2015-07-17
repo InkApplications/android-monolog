@@ -14,7 +14,10 @@ import org.apache.commons.logging.Log;
  * This logger contains an array of handlers that will be invoked in order with
  * any logged messages until either all of the handlers have been invoked or
  * until a handler returns a `FINISHED` response.
- * If no
+ * If no handlers are are bound and the class does not allow unhandled errors
+ * it will throw an IllegalArgumentException. This feature can be enabled during
+ * development so that you can be sure there is a handler for ever given error
+ * type.
  *
  * @author Maxwell Vandervelde (Max@MaxVandervelde.com)
  */
