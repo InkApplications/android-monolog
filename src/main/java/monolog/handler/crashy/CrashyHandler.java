@@ -2,10 +2,13 @@
  * Copyright (c) 2015 Ink Applications, LLC.
  * Distributed under the MIT License (http://opensource.org/licenses/MIT)
  */
-package monolog.handler;
+package monolog.handler.crashy;
 
 import monolog.LogLevel;
+import monolog.LogName;
 import monolog.Record;
+import monolog.handler.HandlerResult;
+import monolog.handler.SwitchedHandler;
 
 /**
  * A log handler that crashes whenever it is used.
@@ -25,6 +28,20 @@ public class CrashyHandler extends SwitchedHandler
     @Override
     protected HandlerResult log(Record record)
     {
-        throw new ErrorException(record.getMessage().toString(), record.getCause());
+        throw new ErrorException(getDisplayedMessage(record), record.getCause());
+    }
+
+    /**
+     * Get the loggable message from a logged object.
+     */
+    private String getDisplayedMessage(Record logged)
+    {
+        Object message = logged.getMessage();
+
+        if (null == message) {
+            return "null";
+        }
+
+        return message.toString();
     }
 }

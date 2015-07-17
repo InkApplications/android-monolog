@@ -2,7 +2,7 @@
  * Copyright (c) 2015 Ink Applications, LLC.
  * Distributed under the MIT License (http://opensource.org/licenses/MIT)
  */
-package monolog.handler;
+package monolog.handler.crashy;
 
 /**
  * Exception intended to crash the application on errors logged.

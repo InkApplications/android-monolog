@@ -2,11 +2,14 @@
  * Copyright (c) 2015 Ink Applications, LLC.
  * Distributed under the MIT License (http://opensource.org/licenses/MIT)
  */
-package monolog.handler;
+package monolog.handler.console;
 
 import android.util.Log;
 import monolog.LogLevel;
+import monolog.LogName;
 import monolog.Record;
+import monolog.handler.HandlerResult;
+import monolog.handler.SwitchedHandler;
 
 /**
  * Sends logged messages to the Android ADB log.
@@ -44,25 +47,45 @@ public class ConsoleHandler extends SwitchedHandler
      */
     protected void sendToConsole(Record record)
     {
+        String message = this.getDisplayedMessage(record);
+
         switch (record.getLevel()) {
             case TRACE:
-                Log.v(this.tag, record.getMessage().toString(), record.getCause());
+                Log.v(this.tag, message, record.getCause());
                 break;
             case DEBUG:
-                Log.d(this.tag, record.getMessage().toString(), record.getCause());
+                Log.d(this.tag, message, record.getCause());
                 break;
             case INFO:
-                Log.i(this.tag, record.getMessage().toString(), record.getCause());
+                Log.i(this.tag, message, record.getCause());
                 break;
             case WARN:
-                Log.w(this.tag, record.getMessage().toString(), record.getCause());
+                Log.w(this.tag, message, record.getCause());
                 break;
             case ERROR:
-                Log.e(this.tag, record.getMessage().toString(), record.getCause());
+                Log.e(this.tag, message, record.getCause());
                 break;
             case FATAL:
-                Log.e(this.tag, record.getMessage().toString(), record.getCause());
+                Log.e(this.tag, message, record.getCause());
                 break;
         }
+    }
+
+    /**
+     * Get the loggable message from a logged object.
+     */
+    private String getDisplayedMessage(Record logged)
+    {
+        Object message = logged.getMessage();
+
+        if (null == message) {
+            return "null";
+        }
+
+        if (message.getClass().isAnnotationPresent(LogName.class)) {
+            return message.getClass().getAnnotation(LogName.class).value();
+        }
+
+        return message.toString();
     }
 }
