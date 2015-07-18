@@ -6,7 +6,6 @@ package monolog;
 
 import monolog.handler.Handler;
 import monolog.handler.HandlerResult;
-import org.apache.commons.logging.Log;
 
 /**
  * Monolog Logger.
@@ -22,7 +21,7 @@ import org.apache.commons.logging.Log;
  * @author Maxwell Vandervelde (Max@MaxVandervelde.com)
  */
 @SuppressWarnings("UnusedDeclaration")
-public class Monolog implements Log
+public class Monolog
 {
     final private Handler[] handlers;
     final private boolean allowUnhandled;
@@ -211,77 +210,5 @@ public class Monolog implements Log
     final public void warn(Object message, Throwable cause)
     {
         this.log(LogLevel.WARN, message, cause);
-    }
-
-    /**
-     * @deprecated This method only exists to maintain compatibility with the
-     *             apache commons logging interface, it is set to always return
-     *             true, so it's not worth using.
-     */
-    @Override
-    @Deprecated
-    final public boolean isDebugEnabled()
-    {
-        return true;
-    }
-
-    /**
-     * @deprecated This method only exists to maintain compatibility with the
-     *             apache commons logging interface, it is set to always return
-     *             true, so it's not worth using.
-     */
-    @Override
-    @Deprecated
-    final public boolean isErrorEnabled()
-    {
-        return true;
-    }
-
-    /**
-     * @deprecated This method only exists to maintain compatibility with the
-     *             apache commons logging interface, it is set to always return
-     *             true, so it's not worth using.
-     */
-    @Override
-    @Deprecated
-    final public boolean isFatalEnabled()
-    {
-        return true;
-    }
-
-    /**
-     * @deprecated This method only exists to maintain compatibility with the
-     *             apache commons logging interface, it is set to always return
-     *             true, so it's not worth using.
-     */
-    @Override
-    @Deprecated
-    final public boolean isInfoEnabled()
-    {
-        return true;
-    }
-
-    /**
-     * @deprecated This method only exists to maintain compatibility with the
-     *             apache commons logging interface, it is set to always return
-     *             true, so it's not worth using.
-     */
-    @Override
-    @Deprecated
-    final public boolean isTraceEnabled()
-    {
-        return true;
-    }
-
-    /**
-     * @deprecated This method only exists to maintain compatibility with the
-     *             apache commons logging interface, it is set to always return
-     *             true, so it's not worth using.
-     */
-    @Override
-    @Deprecated
-    final public boolean isWarnEnabled()
-    {
-        return true;
     }
 }

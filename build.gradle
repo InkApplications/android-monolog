@@ -14,12 +14,12 @@ apply plugin: 'android-maven'
 apply plugin: 'optional-base'
 
 group 'com.github.InkApplications'
-version 'v0.0.0'
+version 'v0.1.0'
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 22 
     buildToolsVersion '22.0.1'
 
     defaultConfig {
